@@ -147,49 +147,6 @@ def delete_calendar_event(event_id: str) -> str:
         return json.dumps({"status": "error", "message": str(e)})
 
 
-
-get_calendar_events_schema = types.FunctionDeclaration(
-    name="get_calendar_events",
-    description="Fetches events from Google Calendar.",
-    parameters=types.Schema(
-        type="object",
-        properties={
-            "start_date": types.Schema(type="string", description="Start date YYYY-MM-DD."),
-            "end_date": types.Schema(type="string", description="End date YYYY-MM-DD."),
-            "summary_keyword": types.Schema(type="string", description="Keyword to filter events."),
-            "attendee_email": types.Schema(type="string", description="Filter by attendee email."),
-        },
-    ),
-)
-
-delete_calendar_event_schema = types.FunctionDeclaration(
-    name="delete_calendar_event",
-    description="Deletes a calendar event by ID.",
-    parameters=types.Schema(
-        type="object",
-        properties={
-            "event_id": types.Schema(type="string", description="ID of the event to delete."),
-        },
-        required=["event_id"],
-    ),
-)
-
-add_calendar_event_schema = types.FunctionDeclaration(
-    name="add_calendar_event",
-    description="Adds a new event to Google Calendar.",
-    parameters=types.Schema(
-        type="object",
-        properties={
-            "summary": types.Schema(type="string", description="Event title."),
-            "start_datetime": types.Schema(type="string", description="Start datetime in ISO format."),
-            "end_datetime": types.Schema(type="string", description="End datetime in ISO format."),
-            "location": types.Schema(type="string", description="Optional location."),
-            "attendees": types.Schema(type="array", items=types.Schema(type="string"), description="List of attendee emails."),
-        },
-        required=["summary", "start_datetime", "end_datetime"],
-    ),
-)
-
 from datetime import datetime
 def get_current_datetime() -> str:
     """
