@@ -5,8 +5,8 @@ import os
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from google import genai
-from google.genai import types
+# from google import genai
+# from google.genai import types
 import json
 from typing import List, Literal, TypedDict, Optional
 from datetime import datetime
@@ -145,16 +145,6 @@ def delete_calendar_event(event_id: str) -> str:
         return json.dumps({"status": "success", "message": f"Event {event_id} deleted successfully."})
     except Exception as e:
         return json.dumps({"status": "error", "message": str(e)})
-
-from google.genai import types  # adjust import for your Gemini SDK version
-
-# tools = types.Tool(
-#     function_declarations=[
-#         get_calendar_events,
-#         delete_calendar_event,
-#         add_calendar_event
-#     ]
-# )
 
 
 
